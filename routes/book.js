@@ -4,7 +4,7 @@ import { deleteBook, getAllBooks, getOneBook, postAllBooks, updateBook } from ".
 
 export const bookRouter = Router()
 bookRouter.get('/books', getAllBooks)
-bookRouter.get('/book/:id', getOneBook)
+bookRouter.get('/books/:id', getOneBook)
 bookRouter.post('/books', postAllBooks)
-bookRouter.patch('/book/:id', updateBook)
-bookRouter.delete('/book/:id', deleteBook)
+bookRouter.patch('/books/:id', updateBook)
+bookRouter.delete('/books/:id', deleteBook)
