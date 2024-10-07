@@ -1,8 +1,8 @@
 // import { user } from "../models/user.js";
 
-// export const register = (req, res, next) => {
-//     res.json('User registered!');
-// }
+export const register = (req, res, next) => {
+    res.json('User registered!');
+}
 
 //  export const login = (req, res, next) => {
 //    res.json('user logged in')
