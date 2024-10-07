@@ -1,5 +1,6 @@
 // import { user } from "../models/user.js";
 
+
 // export const register = (req, res, next) => {
 //     res.json('User registered!');
 // }
