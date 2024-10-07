@@ -3,9 +3,8 @@ import { book } from "../models/book.js";
 
 export const getAllBooks = async (req, res, next) => {
     try {
-        const newBook = new book(req.body)
-        const books = await newBook.save()
-        res.status(200).json(books)
+        const books = await book.find();
+        res.status(200).json(books);
     } catch (error) {
         next(error);
     }
