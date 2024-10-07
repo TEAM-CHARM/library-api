@@ -37,18 +37,31 @@ export const postAllBooks = async (req, res, next) => {
 }
 export const updateBook = async (req, res, next) => {
     try {
-        const newBook = new book(req.body)
-        const books = await newBook.save()
-        res.status(200).json(books)
+      const id =req.params.id;
+      const updatedBook= await book.findOneAndUpdate(id,req.body,{
+        new:true
+      })
+      if(!updateBook){
+        res.status(404).json({msg:`Book with ID ${id} not found`})
+      }else{
+        res.status(200).json(updatedBook)
+      }
     } catch (error) {
         next(error);
     }
 }
 export const deleteBook = async (req, res, next) => {
     try {
-        const newBook = new book(req.body)
-        const books = await newBook.save()
-        res.status(200).json(books)
+      
+       const id = req.params.id;
+       const result = await book.deleteOne({ _id: id });
+       if (result.deletedCount === 0) {
+         res.status(404).json({ msg: `Book with ID ${id} not found` });
+       } else {
+         res
+           .status(200)
+           .json({ msg: `Book with ID ${id} deleted successfully` });
+       }
     } catch (error) {
         next(error);
     }
