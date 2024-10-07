@@ -7,4 +7,5 @@ bookRouter.get('/books', getAllBooks)
 bookRouter.get('/books/:id', getOneBook)
 bookRouter.post('/books', postAllBooks)
 bookRouter.patch('/books/:id', updateBook)
-bookRouter.delete('/books/:id', deleteBook)
+bookRouter.delete('/books/:id', deleteBook
+)
