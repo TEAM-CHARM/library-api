@@ -37,10 +37,14 @@ export const postAllBooks = async (req, res, next) => {
 }
 export const updateBook = async (req, res, next) => {
     try {
-      const id =req.params.id;
-      const updatedBook= await book.findOneAndUpdate(id,req.body,{
-        new:true
-      })
+      const id =(req.params.id);
+      const updatedBook = await book.findOneAndUpdate(
+        { _id: req.params.id },
+        req.body,
+        {
+          new: true,
+        }
+      );
       if(!updateBook){
         res.status(404).json({msg:`Book with ID ${id} not found`})
       }else{
