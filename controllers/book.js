@@ -1,6 +1,5 @@
 import { book } from "../models/book.js";
 
-
 export const getAllBooks = async (req, res, next) => {
   try {
     const books = await book.find();
@@ -8,7 +7,7 @@ export const getAllBooks = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-}
+};
 export const getOneBook = async (req, res, next) => {
   try {
     const id = req.params.id;
@@ -23,22 +22,20 @@ export const getOneBook = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-
-
-}
+};
 export const postAllBooks = async (req, res, next) => {
   try {
-    const newBook = new book(req.body)
-    const books = await newBook.save()
-    res.status(201).json(books)
+    const newBook = new book(req.body);
+    const books = await newBook.save();
+    res.status(201).json(books);
   } catch (error) {
     next(error);
   }
-}
+};
 
 export const updateBook = async (req, res, next) => {
   try {
-    const id = (req.params.id);
+    const id = req.params.id;
     const updatedBook = await book.findOneAndUpdate(
       { _id: req.params.id },
       req.body,
@@ -47,47 +44,47 @@ export const updateBook = async (req, res, next) => {
       }
     );
     if (!updateBook) {
-      res.status(404).json({ msg: `Book with ID ${id} not found` })
+      res.status(404).json({ msg: `Book with ID ${id} not found` });
     } else {
-      res.status(200).json(updatedBook)
+      res.status(200).json(updatedBook);
     }
   } catch (error) {
     next(error);
   }
-}
+};
 
 export const deleteBook = async (req, res, next) => {
   try {
-
     const id = req.params.id;
     const result = await book.deleteOne({ _id: id });
     if (result.deletedCount === 0) {
       res.status(404).json({ msg: `Book with ID ${id} not found` });
     } else {
-      res
-        .status(200)
-        .json({ msg: `Book with ID ${id} deleted successfully` });
+      res.status(200).json({ msg: `Book with ID ${id} deleted successfully` });
     }
   } catch (error) {
     next(error);
   }
-}
+};
 
 // Search a book //
-export const searchBook= async (req,res,next)=>{
-  try{
-    const query =req.query;
-    const searhParams={
-      $or:[
-        {title: { $regex: query.q, $options: "i" }},
-        {author:{$regex: query.q, $options: "i"
-        }},
-        {isbn:query.search},
-      ]
+export const searchBook = async (req, res, next) => {
+  try {
+    const query = req.query;
+    const searchParams = {
+      $or: [
+        { title: { $regex: query.search, $options: "i" } },
+        { author: { $regex: query.search, $options: "i" } },
+      ],
     };
-    const books = await book.find(searhParams);
-    res.status(200).json(books)
-  }catch(error){
-    next(error)
+
+    const books = await book.find(searchParams);
+    if (books.length === 0) {
+      res.status(404).json({ msg: "No books found matching the search term" });
+    } else {
+      res.status(200).json(books);
+    }
+  } catch (error) {
+    next(error);
   }
-}
+};

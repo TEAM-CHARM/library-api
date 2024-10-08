@@ -1,4 +1,4 @@
-import { type } from "express/lib/response";
+
 import mongoose, { Schema, model } from "mongoose";
 
 const authorSchema = new Schema ({
