@@ -30,7 +30,7 @@ export const postAllBooks = async (req, res, next) => {
   try {
     const newBook = new book(req.body)
     const books = await newBook.save()
-    res.status(200).json(books)
+    res.status(201).json(books)
   } catch (error) {
     next(error);
   }
@@ -70,5 +70,24 @@ export const deleteBook = async (req, res, next) => {
     }
   } catch (error) {
     next(error);
+  }
+}
+
+// Search a book //
+export const searchBook= async (req,res,next)=>{
+  try{
+    const query =req.query;
+    const searhParams={
+      $or:[
+        {title: { $regex: query.q, $options: "i" }},
+        {author:{$regex: query.q, $options: "i"
+        }},
+        {isbn:query.search},
+      ]
+    };
+    const books = await book.find(searhParams);
+    res.status(200).json(books)
+  }catch(error){
+    next(error)
   }
 }
