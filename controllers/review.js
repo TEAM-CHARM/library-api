@@ -40,8 +40,18 @@ export const postAllReviews = async (req, res, next) => {
 
 export const updateReview = async (req, res, next) => {
     try {
-        const reviews = await review.find();
-        res.status(200).json(reviews)
+        const id = (req.params.id);
+        const updateReview = await review.findOneAndUpdate({ _id: req.params.id },
+            req.body,
+            {
+                new: true,
+            });
+        if (!updateReview) {
+            res.status(400).json({ msg: `Book with ID ${id} not found` })
+        } else {
+            res.status(200).json(reviews)
+        }
+
     } catch (error) {
         next(error)
     }
