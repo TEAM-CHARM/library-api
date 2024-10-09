@@ -1,4 +1,5 @@
-import Joi from "joi"; 
+import Joi from "joi";
+
 //Book Schema using Joi
 const bookSchema = Joi.object({
   title: Joi.string().required().min(3).max(255),
