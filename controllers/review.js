@@ -15,9 +15,9 @@ export const getAllReviews = async (req, res, next) => {
 export const getOneReview = async (req, res, next) => {
     try {
         const id = req.params.id;
-        const reviews = await review.findById(id);
+        const review = await review.findById(id);
 
-        if (!Review) {
+        if (!review) {
             return res.status(404).json({ msg: `Review with ID ${id} not found` });
         }
 

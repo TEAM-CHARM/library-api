@@ -3,7 +3,7 @@ import { getAllAuthors, getOneAuthor, createAuthor, updateAuthor } from "../cont
 
 
 export const authorRouter = Router()
-authorRouter.get('/author', getAllAuthors)
-authorRouter.get('/author/:id', getOneAuthor)
-authorRouter.post('/author', createAuthor)
-authorRouter.patch('/author/:id', updateAuthor)
+authorRouter.get('/authors', getAllAuthors)
+authorRouter.get('/authors/:id', getOneAuthor)
+authorRouter.post('/authors', createAuthor)
+authorRouter.patch('/authors/:id', updateAuthor)
