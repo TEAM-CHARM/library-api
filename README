@@ -1,0 +1,52 @@
+# Library API - Postman Collection
+
+This project allows you to manage books and authors via an API. Below are the details on how to use the endpoints and Postman collection.
+
+## Setting Up Dynamic URLs in Postman
+
+### Step 1: Create Environments in Postman
+- Create two environments: `Development` (for localhost) and `Production` (for the hosted Render URL).
+  
+### Step 2: Define Variables for Environment
+- Add a variable `baseUrl` in each environment:
+  - `Development`: `http://localhost:5000`
+  - `Production`: `https://https://library-api-7pn2.onrender.com`
+  
+### Step 3: Using Variables in Requests
+- In your Postman requests, replace the hardcoded URLs with the dynamic `{{baseUrl}}` variable.
+
+## API Endpoints
+
+### Books Endpoints
+
+| Method | Endpoint                    | Description                  |
+|--------|-----------------------------|------------------------------|
+| GET    | `{{baseUrl}}/books`          | Fetch all books              |
+| GET    | `{{baseUrl}}/books/:id`      | Fetch one book by ID         |
+| POST   | `{{baseUrl}}/books`          | Create a new book            |
+| PUT    | `{{baseUrl}}/books/:id`      | Update a book by ID          |
+| DELETE | `{{baseUrl}}/books/:id`      | Delete a book by ID          |
+| SEARCH | `{{baseUrl}}/books/search`   | Delete a book by ID          |
+
+### Authors Endpoints
+
+| Method | Endpoint                    | Description                  |
+|--------|-----------------------------|------------------------------|
+| GET    | `{{baseUrl}}/authors`        | Fetch all authors            |
+| GET    | `{{baseUrl}}/authors/:id`    | Fetch one author by ID       |
+| POST   | `{{baseUrl}}/authors`        | Create a new author          |
+| PUT    | `{{baseUrl}}/authors/:id`    | Update an author by ID       |
+| DELETE | `{{baseUrl}}/authors/:id`    | Delete an author by ID       |
+
+## Testing the API with Postman
+
+1. Open Postman.
+2. Import the collection: 
+   - Download the collection from this repository.
+   - Open Postman and click `Import` in the top left corner.
+   - Select the downloaded collection file.
+3. Set up environments for `Development` and `Production`.
+4. Switch between environments to test the API on localhost or on Render.
+
+## Author
+- [Henry Amos]
