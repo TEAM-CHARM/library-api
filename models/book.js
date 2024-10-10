@@ -1,32 +1,34 @@
 import { Schema, model } from "mongoose";
 
 const bookSchema = new Schema({
+  title: { type: String, required: true, index: true },
 
-    title: { type: String, required: true },
+  subTitle: { type: String },
 
-    subTitle: {type: String},
+  author: {
+    type: Schema.Types.ObjectId,
+    ref: "Author",
+  },
 
-    author: { type: String, required: true },
+  rating: { type: Number },
 
-    rating: { type: Number},
+  genre: { type: String },
 
-    genre: { type: String },
+  description: { type: String },
 
-    description: { type: String },
+  year: { type: Number },
 
-    year: {type: Number},
+  language: { type: String },
 
-    language: {type: String},
+  isbn: { type: Number },
 
-    isbn: {type: Number},
+  publisher: { type: String },
 
-    publisher: {type: String},
+  pages: { type: Number },
 
-    pages: { type: Number },
+  imageLink: { type: String },
 
-    imageLink: {type: String},
-
-    pdfLink: {type: String},
+  pdfLink: { type: String },
 });
 
 export const book = model('Book', bookSchema)

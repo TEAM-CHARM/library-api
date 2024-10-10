@@ -2,8 +2,9 @@ import { Author } from "../models/author.js";
 
 export const getAllAuthors = async (req, res, next) => {
     try {
-        const authors = await Author.find();
-        res.status(200).json(authors)
+      // Fetch all authors and populate the 'books' field
+      const authors = await Author.find().populate("books");
+      res.status(200).json(authors);
     } catch (error) {
         next(error);
     }
@@ -34,7 +35,7 @@ export const updateAuthor = async (req, res, next) => {
         if(!author){
             return res.status(404).json({message:'Author not found'})
         }
-        res.status(200).json(authors)
+        res.status(200).json(author)
     } catch (error) {
         next(error);
     }
