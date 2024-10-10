@@ -21,6 +21,7 @@ const bookSchema = new Schema({
   language: { type: String },
 
   isbn: { type: Number },
+  copies:{type:Number},
 
   publisher: { type: String },
 
