@@ -15,6 +15,7 @@ const bookSchema = Joi.object({
   pages: Joi.number().optional(),
   imageLink: Joi.string().optional().uri(),
   pdfLink: Joi.string().optional().uri(),
+  copies: Joi.number().optional(),
 });
 
 export const validateBook = (req, res, next) => {
